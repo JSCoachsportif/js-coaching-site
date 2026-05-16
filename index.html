@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JS_CoachSportif — Coaching personnel à La Louvière & en ligne</title>
+<meta name="description" content="Coaching personnalisé avec Johan Sampaoli, coach certifié PCA. Programmes sur mesure, nutrition incluse, suivi vidéo hebdo, app dédiée. Présentiel La Louvière (Hainaut) + en ligne." />
+<meta property="og:title" content="JS_CoachSportif — Coaching personnel" />
+<meta property="og:description" content="Programme sur mesure, nutrition, suivi dans l'app, résultats mesurables." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<style>
+:root {
+  /* JS_CoachSportif — palette blanc & bleu ciel */
+  --bg: #FFFFFF;              /* fond principal */
+  --bg-2: #F4F8FC;            /* fond alterné, très léger bleu */
+  --card: #FFFFFF;            /* cartes */
+  --card-2: #F0F5FA;          /* cartes hover / fond input */
+  --line: #DBE7F2;            /* bordures fines bleu-grisé */
+  --text: #0E1F33;            /* texte principal navy */
+  --text-dim: #4A5F78;        /* texte secondaire */
+  --text-muted: #8497AB;      /* texte ternaire */
+  --green: #38BDF8;           /* accent : sky blue (var name conservé) */
+  --green-deep: #0369A1;      /* sky-700 pour bordures / accents profonds */
+  --green-shadow: rgba(56, 189, 248, 0.30);
+  --shadow: 0 14px 40px rgba(8, 47, 73, 0.12);
+  --shadow-card: 0 1px 3px rgba(8, 47, 73, 0.05), 0 4px 14px rgba(8, 47, 73, 0.05);
+  --radius: 14px;
+  --radius-lg: 22px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+.container { width: min(1180px, 92%); margin: 0 auto; }
+
+/* === NAV === */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+.brand { font-weight: 800; font-size: 18px; letter-spacing: -0.5px; }
+.brand .accent { color: var(--green); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a { color: var(--text-dim); font-size: 14px; font-weight: 500; transition: color .15s; }
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  background: var(--green); color: #FFF;
+  padding: 10px 18px; border-radius: 999px;
+  font-weight: 700; font-size: 14px;
+  transition: transform .15s, box-shadow .15s;
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px var(--green-shadow); }
+@media (max-width: 800px) {
+  .nav-links { display: none; }
+  .nav-links.mobile-open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); padding: 18px 24px; border-bottom: 1px solid var(--line); gap: 14px; }
+  .nav-burger { display: block; padding: 4px; }
+}
+.nav-burger { display: none; font-size: 22px; }
+
+/* === HERO === */
+.hero { padding: 80px 0 100px; position: relative; overflow: hidden; }
+.hero::before {
+  content: ''; position: absolute; top: -120px; right: -120px;
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, var(--green-shadow), transparent 70%);
+  filter: blur(40px); pointer-events: none;
+}
+.hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 50px; } }
+.eyebrow {
+  display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  color: var(--green); text-transform: uppercase; margin-bottom: 22px;
+  padding: 6px 12px; border: 1px solid var(--green-deep); border-radius: 999px;
+  background: rgba(56,189,248,0.08);
+}
+.hero h1 {
+  font-size: clamp(38px, 6vw, 60px); line-height: 1.05;
+  font-weight: 800; letter-spacing: -1.5px;
+  margin-bottom: 22px;
+}
+.hero h1 .accent { color: var(--green); }
+.hero-lead {
+  font-size: 18px; color: var(--text-dim);
+  max-width: 540px; margin-bottom: 34px;
+}
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
+.btn { padding: 14px 26px; border-radius: 999px; font-weight: 700; font-size: 15px; transition: transform .15s, box-shadow .15s; display: inline-flex; align-items: center; gap: 8px; }
+.btn-primary { background: var(--green); color: #FFF; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px var(--green-shadow); }
+.btn-ghost { border: 1px solid var(--line); color: var(--text); background: transparent; }
+.btn-ghost:hover { border-color: var(--green); color: var(--green); }
+.hero-trust { display: flex; gap: 26px; flex-wrap: wrap; font-size: 13px; color: var(--text-muted); }
+.hero-trust span { display: flex; align-items: center; gap: 6px; }
+.hero-trust .dot { color: var(--green); }
+
+.hero-visual {
+  position: relative; border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, #F0F9FF, #E0F2FE);
+  border: 1px solid var(--line); padding: 38px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.hero-visual::before {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, var(--green-shadow), transparent 60%);
+  filter: blur(30px);
+}
+.stat-big { font-size: 78px; font-weight: 800; line-height: 1; letter-spacing: -3px; color: var(--green); margin-bottom: 8px; }
+.stat-label { font-size: 14px; color: var(--text-dim); margin-bottom: 30px; }
+.mini-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.mini-card { background: rgba(255,255,255,0.85); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+.mini-card .ic { font-size: 18px; margin-bottom: 6px; }
+.mini-card .v { font-size: 18px; font-weight: 700; }
+.mini-card .l { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+/* === SECTION HEADERS === */
+.section { padding: 90px 0; }
+.section-head { text-align: center; margin-bottom: 56px; }
+.section-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 2px; color: var(--green); text-transform: uppercase; margin-bottom: 16px; display: block; }
+.section-head h2 { font-size: clamp(30px, 4.5vw, 44px); font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; line-height: 1.1; }
+.section-head p { font-size: 17px; color: var(--text-dim); max-width: 560px; margin: 0 auto; }
+
+/* === PILIERS === */
+.pillars { background: var(--bg-2); }
+.pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+@media (max-width: 800px) { .pillars-grid { grid-template-columns: 1fr; } }
+.pillar { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; transition: border-color .15s, transform .15s; }
+.pillar:hover { border-color: var(--green-deep); transform: translateY(-4px); }
+.pillar .pic { font-size: 28px; margin-bottom: 16px; display: inline-block; padding: 12px; border-radius: 12px; background: rgba(56,189,248,0.12); }
+.pillar h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+.pillar p { color: var(--text-dim); font-size: 15px; }
+
+/* === PRICING === */
+.pricing { background: var(--bg); }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: stretch; }
+@media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; } }
+.plan {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius-lg); padding: 32px 28px;
+  display: flex; flex-direction: column;
+  position: relative; transition: transform .15s, border-color .15s;
+}
+.plan:hover { transform: translateY(-4px); }
+.plan-popular { border-color: var(--green); box-shadow: 0 0 0 1px var(--green), 0 20px 50px var(--green-shadow); transform: scale(1.02); }
+@media (max-width: 900px) { .plan-popular { transform: none; } }
+.plan-tag { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--green); color: #FFF; padding: 6px 16px; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+.plan-name { font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 14px; }
+.plan-price { font-size: 56px; font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 6px; }
+.plan-price .per { font-size: 16px; font-weight: 500; color: var(--text-muted); letter-spacing: 0; }
+.plan-tag-line { font-size: 14px; color: var(--text-dim); margin-bottom: 26px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+.plan ul { list-style: none; flex-grow: 1; margin-bottom: 26px; }
+.plan ul li { font-size: 14px; padding: 8px 0; padding-left: 28px; position: relative; color: var(--text-dim); }
+.plan ul li::before { content: '✓'; color: var(--green); position: absolute; left: 0; top: 8px; font-weight: 800; }
+.plan-cta { width: 100%; }
+
+/* === PROGRAMS === */
+.programs { background: var(--bg-2); }
+.programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+@media (max-width: 900px) { .programs-grid { grid-template-columns: 1fr; } }
+.prog {
+  border-radius: var(--radius-lg); overflow: hidden;
+  background: var(--card); border: 1px solid var(--line);
+  display: flex; flex-direction: column;
+  transition: transform .15s, border-color .15s;
+}
+.prog:hover { border-color: var(--green-deep); transform: translateY(-4px); }
+.prog-cover { aspect-ratio: 16/9; display: flex; align-items: flex-end; padding: 22px; }
+.prog-tag { background: rgba(255,255,255,0.92); color: var(--green-deep); padding: 6px 12px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+.prog-body { padding: 24px 26px; flex-grow: 1; display: flex; flex-direction: column; }
+.prog-body h3 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+.prog-body p { color: var(--text-dim); font-size: 14px; margin-bottom: 20px; flex-grow: 1; }
+.prog-meta { display: flex; gap: 16px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--text-muted); }
+.prog-meta span { display: flex; align-items: center; gap: 5px; }
+
+/* === ABOUT === */
+.about-grid { display: grid; grid-template-columns: 0.8fr 1fr; gap: 60px; align-items: center; }
+@media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
+.about-photo {
+  aspect-ratio: 4/5; max-width: 380px; width: 100%;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, #E0F2FE, #BAE6FD);
+  border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); font-size: 14px;
+  position: relative; overflow: hidden;
+}
+.about-photo::after {
+  content: ''; position: absolute; inset: -2px;
+  background: linear-gradient(135deg, var(--green) 0%, transparent 50%);
+  opacity: 0.08; pointer-events: none;
+}
+.about-photo .ph-content { position: relative; z-index: 1; text-align: center; padding: 20px; }
+.about-photo .ph-icon { font-size: 60px; margin-bottom: 12px; opacity: 0.4; }
+/* Monogram placeholder (en attendant la vraie photo) */
+.about-photo .monogram {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 20px;
+}
+.about-photo .mono-mark {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(96px, 18vw, 150px);
+  font-weight: 700; font-style: italic; line-height: 0.9;
+  letter-spacing: -8px; color: #0E1F33;
+  margin-bottom: 20px;
+  text-shadow: 0 6px 20px rgba(8, 47, 73, 0.10);
+}
+.about-photo .mono-line {
+  width: 44px; height: 3px; background: var(--green-deep);
+  border-radius: 2px; margin-bottom: 14px;
+}
+.about-photo .mono-brand {
+  font-size: 12px; font-weight: 800; letter-spacing: 4.5px;
+  color: var(--green-deep); margin-bottom: 8px;
+}
+.about-photo .mono-loc {
+  font-size: 10px; font-weight: 600; letter-spacing: 2.5px;
+  color: var(--text-dim);
+}
+.about h2 { margin-bottom: 22px; }
+.about-text p { color: var(--text-dim); font-size: 16px; margin-bottom: 18px; }
+.about-text p strong { color: var(--text); }
+.about-creds { display: flex; gap: 20px; margin-top: 30px; padding-top: 30px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+.cred { flex: 1; min-width: 100px; }
+.cred .v { font-size: 26px; font-weight: 800; color: var(--green); display: block; }
+.cred .l { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; display: block; }
+
+/* === METHOD === */
+.method { background: var(--bg-2); }
+.method-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+@media (max-width: 900px) { .method-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 500px) { .method-grid { grid-template-columns: 1fr; } }
+.step { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px; position: relative; }
+.step-num { font-size: 56px; font-weight: 800; line-height: 1; color: var(--green-deep); letter-spacing: -3px; margin-bottom: 14px; }
+.step h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.step p { color: var(--text-dim); font-size: 14px; }
+
+/* === APP PROMO === */
+.app-promo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+@media (max-width: 900px) { .app-promo-grid { grid-template-columns: 1fr; } }
+.phone-mockup {
+  width: 280px; aspect-ratio: 9/19;
+  background: linear-gradient(145deg, #FFFFFF, #F4F8FC);
+  border: 8px solid #0E1F33; border-radius: 36px;
+  margin: 0 auto;
+  position: relative; overflow: hidden;
+  box-shadow: 0 30px 60px rgba(8, 47, 73, 0.18);
+}
+.phone-screen { padding: 24px 18px; height: 100%; }
+.phone-status { display: flex; justify-content: space-between; align-items: center; padding: 4px 8px 16px; font-size: 11px; color: var(--text-muted); }
+.phone-greeting { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
+.phone-name { font-size: 24px; font-weight: 800; margin-bottom: 22px; }
+.phone-card { background: rgba(56,189,248,0.10); border: 1px solid var(--green); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+.phone-card .lab { font-size: 10px; letter-spacing: 1.5px; color: var(--green); font-weight: 700; }
+.phone-card .ttl { font-size: 14px; font-weight: 700; margin: 6px 0 4px; }
+.phone-card .meta { font-size: 11px; color: var(--text-dim); }
+.phone-section-lab { font-size: 10px; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 8px; font-weight: 700; }
+.phone-mini { background: var(--bg-2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; font-size: 12px; }
+.phone-mini .t { font-weight: 700; }
+.phone-mini .s { font-size: 10px; color: var(--text-muted); }
+
+.app-promo h2 { margin-bottom: 22px; }
+.app-promo p { color: var(--text-dim); font-size: 16px; margin-bottom: 18px; }
+.app-promo ul { list-style: none; margin-bottom: 30px; }
+.app-promo ul li { font-size: 14px; padding: 8px 0; padding-left: 28px; position: relative; color: var(--text-dim); }
+.app-promo ul li::before { content: '→'; color: var(--green); position: absolute; left: 0; top: 8px; }
+
+/* === FAQ === */
+.faq { background: var(--bg-2); }
+.faq-list { max-width: 760px; margin: 0 auto; }
+.faq-item { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 12px; overflow: hidden; }
+.faq-q { display: flex; justify-content: space-between; align-items: center; padding: 22px 26px; cursor: pointer; font-size: 16px; font-weight: 600; transition: background .15s; }
+.faq-q:hover { background: var(--card-2); }
+.faq-q .ic { font-size: 22px; color: var(--green); font-weight: 400; transition: transform .2s; }
+.faq-item.open .faq-q .ic { transform: rotate(45deg); }
+.faq-a { padding: 0 26px 22px; color: var(--text-dim); font-size: 15px; display: none; }
+.faq-item.open .faq-a { display: block; }
+
+/* === CONTACT === */
+.contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; }
+@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.field label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; }
+.field input, .field textarea, .field select {
+  width: 100%; background: var(--card); border: 1px solid var(--line);
+  border-radius: 10px; padding: 14px 16px; font-size: 15px;
+  color: var(--text); font-family: inherit; transition: border-color .15s;
+}
+.field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--green); }
+.field textarea { min-height: 100px; resize: vertical; }
+.contact-form .btn { align-self: flex-start; margin-top: 8px; }
+.form-note { font-size: 12px; color: var(--text-muted); }
+
+.contact-side { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; }
+.contact-side h3 { font-size: 18px; font-weight: 700; margin-bottom: 22px; }
+.contact-link { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); transition: opacity .15s; }
+.contact-link:hover { opacity: 0.75; }
+.contact-link:last-child { border-bottom: none; }
+.contact-link .ic { width: 38px; height: 38px; border-radius: 10px; background: rgba(56,189,248,0.12); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.contact-link .lab { font-size: 11px; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; }
+.contact-link .v { font-size: 14px; font-weight: 700; }
+
+/* === FOOTER === */
+.footer { padding: 50px 0 30px; border-top: 1px solid var(--line); background: var(--bg); }
+.footer-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px; }
+.footer-brand { font-weight: 800; }
+.footer-links { display: flex; gap: 22px; font-size: 13px; color: var(--text-muted); }
+.footer-links a:hover { color: var(--text); }
+.footer-legal { font-size: 12px; color: var(--text-muted); margin-top: 18px; }
+
+/* === CHATBOT === */
+.chat-fab {
+  position: fixed; bottom: 24px; right: 24px; z-index: 100;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--green); color: #FFF;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  box-shadow: 0 8px 24px var(--green-shadow), 0 0 0 0 var(--green);
+  transition: transform .15s, box-shadow .15s;
+}
+.chat-fab:hover { transform: scale(1.05); }
+.chat-fab .badge {
+  position: absolute; top: -4px; right: -4px;
+  background: #ff3b3b; color: #fff;
+  width: 22px; height: 22px; border-radius: 50%;
+  font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid var(--bg);
+}
+.chat-fab .badge.hidden { display: none; }
+.chat-window {
+  position: fixed; bottom: 100px; right: 24px; z-index: 101;
+  width: 380px; max-width: calc(100vw - 32px); height: 560px; max-height: calc(100vh - 140px);
+  background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: 18px; box-shadow: 0 30px 60px rgba(8, 47, 73, 0.20);
+  display: none; flex-direction: column; overflow: hidden;
+}
+.chat-window.open { display: flex; }
+.chat-header { padding: 18px 20px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 12px; }
+.chat-header .av { width: 36px; height: 36px; border-radius: 50%; background: var(--green); color: #FFF; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; }
+.chat-header .title { flex-grow: 1; }
+.chat-header .name { font-size: 14px; font-weight: 700; }
+.chat-header .status { font-size: 11px; color: var(--green); display: flex; align-items: center; gap: 5px; }
+.chat-header .status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+.chat-close { font-size: 22px; color: var(--text-muted); padding: 4px 10px; }
+.chat-close:hover { color: var(--text); }
+.chat-msgs { flex-grow: 1; overflow-y: auto; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+.chat-msgs::-webkit-scrollbar { width: 6px; }
+.chat-msgs::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+.msg { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 14px; line-height: 1.45; word-wrap: break-word; }
+.msg.bot { background: var(--card); border: 1px solid var(--line); align-self: flex-start; border-bottom-left-radius: 4px; }
+.msg.user { background: var(--green); color: #FFF; align-self: flex-end; border-bottom-right-radius: 4px; }
+.msg strong { font-weight: 700; }
+.msg-quick { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.msg-quick button {
+  background: rgba(56,189,248,0.10);
+  border: 1px solid var(--green-deep);
+  color: var(--green); padding: 8px 14px;
+  border-radius: 999px; font-size: 13px; font-weight: 600;
+  transition: background .15s;
+}
+.msg-quick button:hover { background: rgba(56,189,248,0.20); }
+.chat-input-row { padding: 14px 16px; border-top: 1px solid var(--line); display: flex; gap: 10px; }
+.chat-input {
+  flex-grow: 1; background: var(--card); border: 1px solid var(--line);
+  border-radius: 999px; padding: 10px 16px; font-size: 14px;
+  color: var(--text); font-family: inherit;
+}
+.chat-input:focus { outline: none; border-color: var(--green); }
+.chat-send { background: var(--green); color: #FFF; border-radius: 50%; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+@media (max-width: 480px) {
+  .chat-window { right: 8px; left: 8px; width: auto; bottom: 90px; height: 70vh; }
+  .chat-fab { right: 16px; bottom: 16px; }
+}
+
+/* === UTIL === */
+.text-center { text-align: center; }
+.mt-md { margin-top: 30px; }
+
+/* === Light mode card elevation === */
+.plan, .pillar, .step, .prog, .faq-item, .contact-side {
+  box-shadow: var(--shadow-card);
+}
+.plan-popular {
+  box-shadow: 0 0 0 1px var(--green), 0 20px 50px var(--green-shadow);
+}
+.field input, .field textarea, .field select {
+  box-shadow: 0 1px 2px rgba(8, 47, 73, 0.04);
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================== NAV ============================== -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="brand">JS_<span class="accent">CoachSportif</span></a>
+    <nav class="nav-links" id="nav-links">
+      <a href="#programmes">Programmes</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#about">À propos</a>
+      <a href="#methode">Méthode</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="nav-cta">Démarrer</a>
+    </nav>
+    <button class="nav-burger" onclick="document.getElementById('nav-links').classList.toggle('mobile-open')">☰</button>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- ============================== HERO ============================== -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Coach certifié PCA · La Louvière & en ligne</span>
+      <h1>Le coach qui te suit <span class="accent">vraiment</span>, jusqu'au résultat.</h1>
+      <p class="hero-lead">Programme sur mesure, plan nutrition inclus, suivi vidéo chaque semaine, app dédiée. Tu fais le travail, je m'occupe du reste.</p>
+      <div class="hero-ctas">
+        <a href="#tarifs" class="btn btn-primary">Voir les tarifs →</a>
+        <a href="#contact" class="btn btn-ghost">Discuter avec Johan</a>
+      </div>
+      <div class="hero-trust">
+        <span><span class="dot">●</span> Essai 7 jours gratuits</span>
+        <span><span class="dot">●</span> Sans engagement</span>
+        <span><span class="dot">●</span> Garantie résultats 3 mois</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="stat-big">100%</div>
+      <div class="stat-label">Programme adapté à TON corps, TON matériel, TON emploi du temps.</div>
+      <div class="mini-cards">
+        <div class="mini-card"><div class="ic">📈</div><div class="v">+8 kg</div><div class="l">Masse musc.</div></div>
+        <div class="mini-card"><div class="ic">⚡</div><div class="v">-12 %</div><div class="l">Masse grasse</div></div>
+        <div class="mini-card"><div class="ic">💪</div><div class="v">+30 %</div><div class="l">Force max</div></div>
+        <div class="mini-card"><div class="ic">🎯</div><div class="v">12 sem</div><div class="l">Résultats visibles</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== PILIERS ============================== -->
+<section class="pillars section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">⭐ Pourquoi ce coaching</span>
+      <h2>Trois piliers, zéro promesse vide.</h2>
+      <p>Chaque client a un programme construit autour de SES contraintes. Pas de modèle générique recopié pour 200 personnes.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <span class="pic">📋</span>
+        <h3>Programme sur mesure</h3>
+        <p>Construit autour de ton corps, ton matériel, ton emploi du temps. Pas de plan générique. Pas de PDF copié-collé.</p>
+      </div>
+      <div class="pillar">
+        <span class="pic">🎥</span>
+        <h3>Suivi vidéo hebdo</h3>
+        <p>Chaque semaine, retour vidéo personnalisé sur ton avancement. On corrige la technique. On ajuste le plan.</p>
+      </div>
+      <div class="pillar">
+        <span class="pic">🍽️</span>
+        <h3>Nutrition incluse</h3>
+        <p>Plan nutrition, 15 recettes types, calcul des macros. Inclus dès le plan Coaching. Pas un PDF à part facturé 50 €.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== TARIFS ============================== -->
+<section class="pricing section" id="tarifs">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">💰 Tarifs</span>
+      <h2>Trois formules. Choisis ton niveau d'engagement.</h2>
+      <p>Tous les plans incluent l'app dédiée et la garantie résultats. Annulation à tout moment. Essai 7 jours gratuits.</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- Essentiel -->
+      <div class="plan">
+        <div class="plan-name">Essentiel</div>
+        <div class="plan-price">49<span class="per">€/mois</span></div>
+        <div class="plan-tag-line">Pour démarrer en autonomie avec le bon cadre.</div>
+        <ul>
+          <li>Accès aux programmes types dans l'app</li>
+          <li>Timer de repos + suivi de progression</li>
+          <li>Guide nutrition (PDF + 15 recettes)</li>
+          <li>Calendrier de séances + streak</li>
+          <li>Annulation à tout moment</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost plan-cta" onclick="setPlanIntent('essentiel')">Choisir Essentiel</a>
+      </div>
+
+      <!-- Coaching (popular) -->
+      <div class="plan plan-popular">
+        <div class="plan-tag">Le plus choisi</div>
+        <div class="plan-name">Coaching</div>
+        <div class="plan-price">99<span class="per">€/mois</span></div>
+        <div class="plan-tag-line">Mon programme personnel, suivi direct, résultats mesurables.</div>
+        <ul>
+          <li>Programme sur-mesure adapté à ton profil</li>
+          <li>Plan nutrition personnalisé + 15 recettes</li>
+          <li>1 review vidéo / semaine</li>
+          <li>Chat WhatsApp direct avec Johan</li>
+          <li>Programme révisé toutes les 4 semaines</li>
+          <li>Annulation à tout moment</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary plan-cta" onclick="setPlanIntent('coaching')">Démarrer le Coaching</a>
+      </div>
+
+      <!-- Premium -->
+      <div class="plan">
+        <div class="plan-name">Premium</div>
+        <div class="plan-price">169<span class="per">€/mois</span></div>
+        <div class="plan-tag-line">Maximum d'attention, main-tenue, résultats prioritaires.</div>
+        <ul>
+          <li>Tout du plan Coaching</li>
+          <li>2 visios 1-on-1 / mois (ou 1 séance présentielle La Louvière)</li>
+          <li>Plan nutrition ultra-perso (macros calculés)</li>
+          <li>Réponse prioritaire WhatsApp &lt; 2 h</li>
+          <li>Bilan corporel mensuel</li>
+          <li>Accès anticipé aux nouveaux programmes</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost plan-cta" onclick="setPlanIntent('premium')">Choisir Premium</a>
+      </div>
+    </div>
+    <p class="form-note text-center mt-md">Paiement 100 % sécurisé par Stripe · TVA incluse · Annulation depuis ton profil dans l'app</p>
+  </div>
+</section>
+
+<!-- ============================== PROGRAMMES ============================== -->
+<section class="programs section" id="programmes">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">🎯 Programmes</span>
+      <h2>Choisis ta direction.</h2>
+      <p>Trois axes principaux. Programme adapté à ton niveau et tes objectifs après le bilan initial.</p>
+    </div>
+    <div class="programs-grid">
+      <div class="prog">
+        <div class="prog-cover" style="background: linear-gradient(135deg, #38BDF8 0%, #0369A1 100%);">
+          <span class="prog-tag">Débutant · 12 sem</span>
+        </div>
+        <div class="prog-body">
+          <h3>Remise en forme</h3>
+          <p>Reprendre le sport en douceur, brûler du gras, retrouver énergie et tonus. Bases techniques avant tout. 3 séances/sem, 45 min.</p>
+          <div class="prog-meta">
+            <span>📅 3x/sem</span>
+            <span>⏱️ 45 min</span>
+            <span>🏠 Sans matos OK</span>
+          </div>
+        </div>
+      </div>
+      <div class="prog">
+        <div class="prog-cover" style="background: linear-gradient(135deg, #38BDF8 0%, #075985 100%);">
+          <span class="prog-tag">Intermédiaire · 8 sem</span>
+        </div>
+        <div class="prog-body">
+          <h3>Prise de masse</h3>
+          <p>Construire du muscle propre. Split push/pull/legs + full-body. Salle ou matériel maison (haltères + barre). 4 séances/sem, 60 min.</p>
+          <div class="prog-meta">
+            <span>📅 4x/sem</span>
+            <span>⏱️ 60 min</span>
+            <span>🏋️ Matos requis</span>
+          </div>
+        </div>
+      </div>
+      <div class="prog">
+        <div class="prog-cover" style="background: linear-gradient(135deg, #38BDF8 0%, #0C4A6E 100%);">
+          <span class="prog-tag">Avancé · 6 sem</span>
+        </div>
+        <div class="prog-body">
+          <h3>Performance athlétique</h3>
+          <p>Sportifs confirmés : explosivité, force max, sprint, pliométrie. Football, courses, sports explosifs. Salle équipée.</p>
+          <div class="prog-meta">
+            <span>📅 4x/sem</span>
+            <span>⏱️ 60-70 min</span>
+            <span>🏟️ Salle équipée</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== À PROPOS ============================== -->
+<section class="section" id="about">
+  <div class="container about-grid about">
+    <!-- ============= PLACEHOLDER PHOTO (à remplacer quand tu as ta vraie photo)
+         Remplace tout ce bloc par : <img src="photos/johan.jpg" alt="Johan Sampaoli — Coach sportif La Louvière" class="about-photo">
+         et supprime cette div. ============= -->
+    <div class="about-photo">
+      <div class="monogram">
+        <div class="mono-mark">JS</div>
+        <div class="mono-line"></div>
+        <div class="mono-brand">COACH SPORTIF</div>
+        <div class="mono-loc">LA LOUVIÈRE · BELGIQUE</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="section-eyebrow">À propos de Johan</span>
+      <h2>Coach certifié, ancien sportif de haut niveau.</h2>
+      <p>Je suis <strong>Johan Sampaoli</strong>, coach personnel certifié <strong>PCA (Personal Coach Academy)</strong>, basé à <strong>La Louvière</strong> (Hainaut). Mon parcours sportif est passé par le <strong>RSC Anderlecht</strong> avant que je me consacre pleinement au coaching.</p>
+      <p>Ma méthode : pas de promesse marketing, pas de programme générique. J'analyse ton point de départ, je construis un plan adapté à ton corps, ton matériel et ton emploi du temps, et je te suis chaque semaine pour ajuster.</p>
+      <p>Mon engagement : que tu obtiennes des résultats <strong>mesurables</strong> en 12 semaines. Si tu fais le travail, ça marche. Si tu ne le fais pas, je te le dis et on remet le cadre.</p>
+      <div class="about-creds">
+        <div class="cred"><span class="v">PCA</span><span class="l">Certifié</span></div>
+        <div class="cred"><span class="v">10+</span><span class="l">Ans de sport</span></div>
+        <div class="cred"><span class="v">100%</span><span class="l">Sur mesure</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== MÉTHODE ============================== -->
+<section class="method section" id="methode">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">🔄 La méthode</span>
+      <h2>Comment ça se passe concrètement</h2>
+      <p>Quatre étapes claires. De ton premier message au premier résultat visible : 3-4 semaines.</p>
+    </div>
+    <div class="method-grid">
+      <div class="step"><div class="step-num">01</div><h3>Premier contact</h3><p>Tu m'écris sur WhatsApp ou via le formulaire. Je t'envoie un questionnaire bref : objectifs, niveau, contraintes.</p></div>
+      <div class="step"><div class="step-num">02</div><h3>Ton plan</h3><p>Je construis ton programme + ton plan nutrition. Tu les reçois dans l'app — séances, exos avec consignes, recettes, macros.</p></div>
+      <div class="step"><div class="step-num">03</div><h3>Tu exécutes</h3><p>Tu coches tes séances dans l'app. Tu m'envoies tes vidéos pour retour technique. Tu poses tes questions sur le chat.</p></div>
+      <div class="step"><div class="step-num">04</div><h3>On ajuste</h3><p>Chaque semaine, retour vidéo personnalisé. Toutes les 4 semaines, bilan complet et nouveau cap.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== APP PROMO ============================== -->
+<section class="section">
+  <div class="container app-promo-grid">
+    <div class="phone-mockup">
+      <div class="phone-screen">
+        <div class="phone-status"><span>9:41</span><span>● ● ●</span></div>
+        <div class="phone-greeting">Bonjour,</div>
+        <div class="phone-name">Marie 👋</div>
+        <div class="phone-card">
+          <div class="lab">SÉANCE DU JOUR</div>
+          <div class="ttl">Push — Poitrine / Épaules</div>
+          <div class="meta">60 min · 6 exercices</div>
+        </div>
+        <div class="phone-section-lab">TES PROGRAMMES</div>
+        <div class="phone-mini"><div class="t">Prise de masse — 8 sem.</div><div class="s">Sem. 3 · 4x/sem</div></div>
+        <div class="phone-mini"><div class="t">Performance athlétique</div><div class="s">Disponible · 6 sem.</div></div>
+      </div>
+    </div>
+    <div class="app-promo">
+      <span class="section-eyebrow">📱 L'application</span>
+      <h2>Ton coaching, dans ta poche.</h2>
+      <p>Une app dédiée pour suivre ton programme jour après jour. Installable sur iPhone et Android en 2 secondes. <strong>Aucun téléchargement App Store nécessaire.</strong></p>
+      <ul>
+        <li>Toutes tes séances avec consignes techniques</li>
+        <li>Timer de repos automatique entre séries</li>
+        <li>Plan nutrition + 15 recettes intégrés</li>
+        <li>Suivi de ta progression hebdomadaire</li>
+        <li>Chat WhatsApp direct avec Johan depuis l'app</li>
+        <li>Fonctionne offline (parfait à la salle)</li>
+      </ul>
+      <a href="#contact" class="btn btn-primary">Démarrer mon coaching →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FAQ ============================== -->
+<section class="faq section" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">❓ Questions fréquentes</span>
+      <h2>Les réponses aux 6 questions qu'on me pose le plus.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Combien ça coûte exactement ? <span class="ic">+</span></div>
+        <div class="faq-a">Trois formules mensuelles. <strong>Essentiel à 49 €/mois</strong> (programmes types + nutrition + app, sans contact direct). <strong>Coaching à 99 €/mois</strong> (programme sur-mesure + nutrition perso + chat WhatsApp + 1 review vidéo/sem). <strong>Premium à 169 €/mois</strong> (Coaching + 2 visios/mois ou 1 séance présentielle + macros calculés + bilan mensuel). Annulation à tout moment, essai 7 jours gratuits sur tous les plans.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Tu coaches en présentiel ou seulement en ligne ? <span class="ic">+</span></div>
+        <div class="faq-a">Les deux. Présentiel à <strong>La Louvière</strong> et zone Hainaut/Mons/Charleroi (inclus dans le plan Premium, 1 séance/mois — sinon en supplément). En ligne, j'accompagne partout en Belgique et en France via l'app et le chat WhatsApp. Format hybride aussi : démarrage présentiel, suivi à distance.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Et si je suis vraiment débutant ? <span class="ic">+</span></div>
+        <div class="faq-a">C'est exactement le profil pour qui le coaching change tout. Le programme "Remise en forme" (12 semaines, 3 séances/semaine, 45 min) commence par les bases techniques. Tu apprends à exécuter chaque mouvement proprement avant de charger. Aucune pression, aucun jugement. Beaucoup de mes clients démarrent de zéro.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">La nutrition, c'est inclus ou à part ? <span class="ic">+</span></div>
+        <div class="faq-a"><strong>Inclus dans tous les plans à partir de 49 €.</strong> Tu reçois le PDF "Bases nutrition coach" (macros, hydratation, supplémentation, 5 règles d'or) + 15 recettes types avec macros calculés. Dans le plan Coaching, le plan nutrition est adapté à ton profil. En Premium, je te calcule tes macros sur mesure et on ajuste chaque mois.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Faut-il du matériel ? <span class="ic">+</span></div>
+        <div class="faq-a">Tout dépend du programme. Remise en forme : poids du corps, zéro matériel. Prise de masse : haltères + barre minimum, ou accès salle. Performance : salle équipée. Au questionnaire d'onboarding, tu dis ce que tu as → j'adapte.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Et si je n'ai pas de résultats ? <span class="ic">+</span></div>
+        <div class="faq-a">Si tu fais sérieusement le programme pendant 12 semaines (3 séances/sem minimum, plan nutrition respecté) et que tu ne vois <strong>aucune</strong> évolution mesurable, je te rembourse les 3 derniers mois. Cette garantie n'a jamais été activée — quand le travail est fait, le corps répond.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CONTACT ============================== -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">💬 Démarrer</span>
+      <h2>Prêt à commencer ?</h2>
+      <p>Le moyen le plus rapide : un message WhatsApp direct. Sinon, le formulaire ci-dessous, je réponds sous 24 h.</p>
+    </div>
+    <div class="contact-grid">
+      <form class="contact-form" id="contact-form" onsubmit="submitContactForm(event)">
+        <div class="field">
+          <label for="f-name">Prénom</label>
+          <input id="f-name" name="name" type="text" required />
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" required />
+        </div>
+        <div class="field">
+          <label for="f-goal">Objectif principal</label>
+          <select id="f-goal" name="goal" required>
+            <option value="">Choisir…</option>
+            <option>Perte de poids</option>
+            <option>Prise de muscle</option>
+            <option>Remise en forme générale</option>
+            <option>Performance / sport</option>
+            <option>Récupération / blessure</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-msg">Ton message (optionnel)</label>
+          <textarea id="f-msg" name="message"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer ma demande →</button>
+        <div class="form-note">En envoyant, tu acceptes que je te recontacte par email. Pas de spam, jamais.</div>
+      </form>
+
+      <aside class="contact-side">
+        <h3>Contact direct</h3>
+        <a class="contact-link" href="https://wa.me/32495740715?text=Salut+Johan%2C+je+suis+int%C3%A9ress%C3%A9(e)+par+ton+coaching." target="_blank" rel="noopener">
+          <div class="ic">💬</div>
+          <div><div class="lab">WhatsApp · Réponse rapide</div><div class="v">+32 495 74 07 15</div></div>
+        </a>
+        <a class="contact-link" href="https://instagram.com/j_s.coaching" target="_blank" rel="noopener">
+          <div class="ic">📷</div>
+          <div><div class="lab">Instagram</div><div class="v">@j_s.coaching</div></div>
+        </a>
+        <a class="contact-link" href="mailto:contact@jscoachsportif.com">
+          <div class="ic">✉</div>
+          <div><div class="lab">Email</div><div class="v">contact@jscoachsportif.com</div></div>
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-row">
+      <div class="footer-brand">JS_<span style="color:var(--green)">CoachSportif</span></div>
+      <div class="footer-links">
+        <a href="#programmes">Programmes</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#about">À propos</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-legal">© 2026 Johan Sampaoli — JS_CoachSportif. Tous droits réservés. Coaching personnel certifié PCA, La Louvière & en ligne.</div>
+  </div>
+</footer>
+
+<!-- ============================== CHATBOT ============================== -->
+<button class="chat-fab" id="chat-fab" onclick="toggleChat()">
+  💬
+  <span class="badge hidden" id="chat-badge">1</span>
+</button>
+<div class="chat-window" id="chat-window">
+  <div class="chat-header">
+    <div class="av">JS</div>
+    <div class="title">
+      <div class="name">CoachBot</div>
+      <div class="status">En ligne · répond instantanément</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-msgs" id="chat-msgs"></div>
+  <form class="chat-input-row" onsubmit="onChatSubmit(event)">
+    <input class="chat-input" id="chat-input" type="text" placeholder="Pose ta question…" autocomplete="off" />
+    <button class="chat-send" type="submit">→</button>
+  </form>
+</div>
+
+<!-- ============================== SCRIPT ============================== -->
+<script>
+/* ============== CONFIG ============== */
+const WHATSAPP_NUMBER = '32495740715';
+const COACH_NAME = 'Johan';
+
+/* ============== FAQ KEYWORD MATCHER ============== */
+const FAQ_PATTERNS = [
+  {
+    keys: ['prix', 'tarif', 'coût', 'cout', 'combien', 'cher', 'budget'],
+    a: "Trois formules mensuelles :\n\n• **Essentiel** — 49 €/mois (programmes app + nutrition, sans contact direct)\n• **Coaching** — 99 €/mois (programme sur-mesure + nutrition perso + chat WhatsApp + review vidéo) ← le plus choisi\n• **Premium** — 169 €/mois (tout du Coaching + 2 visios/mois + bilan mensuel)\n\n**Essai 7 jours gratuits sur tous les plans. Annulation à tout moment.**"
+  },
+  {
+    keys: ['essentiel', '49', 'autonomie', 'budget serré'],
+    a: "Le plan **Essentiel à 49 €/mois** te donne accès aux 3 programmes types dans l'app, au timer de repos, au suivi de progression, et au guide nutrition complet (PDF + 15 recettes). C'est l'option auto-coaching — pas de contact direct avec Johan, mais tu as la structure et les outils. Idéal si tu es autonome."
+  },
+  {
+    keys: ['coaching', '99', 'sur mesure', 'sur-mesure', 'personnalis'],
+    a: "Le plan **Coaching à 99 €/mois** est l'offre centrale. Programme sur-mesure construit autour de ton corps/matos/dispo, plan nutrition adapté à ton profil, **chat WhatsApp direct avec Johan**, 1 review vidéo par semaine sur tes exos, programme révisé toutes les 4 semaines. **80 % des clients prennent ce plan.**"
+  },
+  {
+    keys: ['premium', '169', 'visio', 'présentiel', 'la louvière', 'louviere', 'louvière', 'hainaut', 'bruxelles', 'mons', 'charleroi', '1-on-1', '1 on 1'],
+    a: "Le plan **Premium à 169 €/mois** : tout du Coaching + **2 visios 1-on-1 par mois** (ou 1 séance présentielle à La Louvière), plan nutrition ultra-perso avec macros calculés sur ton corps, réponse prioritaire WhatsApp en moins de 2h, et bilan corporel mensuel. Pour les profils qui veulent un maximum de main-tenue."
+  },
+  {
+    keys: ['débutant', 'debutant', 'jamais fait', 'jamais sport', 'reprendre', 'reprise', 'nul', 'mauvais'],
+    a: "C'est exactement le bon profil. Le programme **Remise en forme** (12 semaines, 3x/sem, 45 min) commence par les bases techniques. Tu apprends à exécuter proprement avant de charger. Aucune pression, aucun jugement. Le plan **Coaching à 99 €** est probablement le plus adapté si tu démarres — tu as un suivi direct et de la nutrition perso."
+  },
+  {
+    keys: ['où', 'lieu', 'distance', 'ligne', 'online', 'à distance'],
+    a: "Présentiel à **La Louvière** (Hainaut — zone Mons/Charleroi/Soignies aussi possible) inclus en Premium 1 séance/mois, ET en ligne partout en BE/FR. Format hybride aussi possible : démarrage en présentiel, suivi à distance. Tu choisis selon ta préférence."
+  },
+  {
+    keys: ['matériel', 'materiel', 'équipement', 'equipement', 'haltère', 'haltere', 'salle', 'maison', 'sans matériel'],
+    a: "Tout dépend du programme. **Remise en forme** : poids du corps, zéro matériel. **Prise de masse** : haltères + barre min, ou accès salle. **Performance** : salle équipée. Au questionnaire d'onboarding, tu dis ce que tu as → Johan adapte."
+  },
+  {
+    keys: ['fois', 'séance', 'seance', 'semaine', 'fréquence', 'frequence', 'temps', 'durée', 'duree', 'long'],
+    a: "**Remise en forme** : 3 séances/sem de 45 min. **Prise de masse** : 4 séances/sem de 60 min. **Performance** : 4 séances/sem de 60-70 min. Si tu peux moins, on adapte — la régularité bat la fréquence absolue."
+  },
+  {
+    keys: ['certif', 'diplôme', 'diplome', 'qualifié', 'qualifie', 'compétent', 'pca', 'expérience', 'experience'],
+    a: "Johan est **coach certifié PCA** (Personal Coach Academy), avec un parcours sportif passé par le **RSC Anderlecht** avant de se consacrer au coaching. Approche méthodique, scientifique, adaptée à chaque corps."
+  },
+  {
+    keys: ['résultat', 'resultat', 'efficace', 'marche', 'fonctionne', 'garanti', 'progress'],
+    a: "Si tu fais le programme sérieusement pendant 12 semaines (3+ séances/sem, plan nutrition respecté) sans aucune évolution mesurable, Johan te **rembourse 3 mois**. Cette garantie n'a jamais été activée — quand tu fais le travail, le corps répond."
+  },
+  {
+    keys: ['nutrition', 'régime', 'regime', 'alimentation', 'manger', 'diète', 'diete', 'protéine', 'proteine', 'macros', 'recette'],
+    a: "**La nutrition est incluse dans TOUS les plans**, dès Essentiel à 49 €. Tu reçois le PDF \"Bases nutrition coach\" + 15 recettes types avec macros. Dans le plan Coaching, le plan nutrition est adapté à ton profil. En Premium, Johan calcule tes macros sur mesure et tu fais un bilan mensuel."
+  },
+  {
+    keys: ['blessure', 'douleur', 'mal au dos', 'mal au genou', 'récupération', 'recuperation', 'kine', 'kiné'],
+    a: "Si tu as une blessure active ou un suivi médical en cours, **dis-le à Johan dès le questionnaire**. Il adapte le programme et collabore avec ton kiné si besoin. Pour une rééducation pure, mieux vaut finir le suivi médical avant de démarrer le coaching."
+  },
+  {
+    keys: ['femme', 'femmes', 'enceinte', 'postnatal', 'maman', 'menstruel'],
+    a: "Johan coache hommes et femmes. Pour grossesse / postnatal, il adapte le programme selon ta phase et collabore avec une sage-femme ou kiné spécialisée. Demande-lui directement par WhatsApp pour cette spécificité."
+  },
+  {
+    keys: ['âge', 'age', 'vieux', 'senior', '50 ans', '60 ans', 'jeune', 'adolescent'],
+    a: "Tous les âges adultes sont accueillis. Johan a coaché de 18 à 70 ans. Le programme s'adapte à ta condition physique du moment, pas à ton âge sur la carte d'identité. Pour les mineurs, c'est sur demande spécifique."
+  },
+  {
+    keys: ['annul', 'résili', 'resili', 'engagement', 'arrêter', 'arreter', 'remboursement'],
+    a: "Pas d'engagement. Tu peux **annuler à tout moment** depuis ton profil dans l'app — ça stoppe la prochaine facturation. Aucun frais d'annulation. Pour le remboursement : essai 7 jours intégral, et garantie 3 mois si tu as suivi le programme sans résultat."
+  },
+];
+
+/* ============== FLOW (guided conversation) ============== */
+const FLOW = {
+  start: {
+    bot: ["Salut 👋 je suis CoachBot, l'assistant de Johan. Je peux te répondre directement, ou te mettre en relation avec lui si tu préfères.", "Comment puis-je t'aider ?"],
+    quick: [
+      { label: "Voir les tarifs", next: 'tarifs' },
+      { label: "Trouver le bon programme", next: 'qualif_1' },
+      { label: "Tester l'app", next: 'app' },
+      { label: "Une autre question", next: 'free_text' },
+    ]
+  },
+  tarifs: {
+    bot: ["Voici les 3 formules :\n\n• **Essentiel** — 49 €/mois (programmes app + nutrition incluse, sans contact direct)\n• **Coaching** — 99 €/mois ← le plus choisi (programme sur-mesure + nutrition perso + chat WhatsApp + review vidéo hebdo)\n• **Premium** — 169 €/mois (Coaching + 2 visios/mois + bilan mensuel + macros calculés)\n\n**Essai 7 jours gratuits sur tous les plans.**"],
+    quick: [
+      { label: "Démarrer Coaching", next: 'capture', save: { plan: 'Coaching 99€' } },
+      { label: "Démarrer Essentiel", next: 'capture', save: { plan: 'Essentiel 49€' } },
+      { label: "Démarrer Premium", next: 'capture', save: { plan: 'Premium 169€' } },
+      { label: "J'ai d'autres questions", next: 'free_text' },
+      { label: "Parler à Johan", next: 'handoff_simple' },
+    ]
+  },
+  qualif_1: {
+    bot: ["Super, je vais te poser 3 questions rapides pour te suggérer le bon programme et le bon plan.", "Quel est ton objectif principal ?"],
+    quick: [
+      { label: "Perte de poids", next: 'qualif_2', save: { goal: 'Perte de poids' } },
+      { label: "Prise de muscle", next: 'qualif_2', save: { goal: 'Prise de muscle' } },
+      { label: "Remise en forme", next: 'qualif_2', save: { goal: 'Remise en forme' } },
+      { label: "Performance / sport", next: 'qualif_2', save: { goal: 'Performance' } },
+    ]
+  },
+  qualif_2: {
+    bot: ["Tu en es où dans ta pratique du sport ?"],
+    quick: [
+      { label: "Débutant", next: 'qualif_3', save: { level: 'Débutant' } },
+      { label: "Intermédiaire", next: 'qualif_3', save: { level: 'Intermédiaire' } },
+      { label: "Avancé / sportif", next: 'qualif_3', save: { level: 'Avancé' } },
+    ]
+  },
+  qualif_3: {
+    bot: ["Combien de fois par semaine peux-tu t'entraîner ?"],
+    quick: [
+      { label: "1-2x/sem", next: 'recommend', save: { freq: '1-2x' } },
+      { label: "3x/sem", next: 'recommend', save: { freq: '3x' } },
+      { label: "4x/sem ou +", next: 'recommend', save: { freq: '4x+' } },
+    ]
+  },
+  recommend: {
+    bot: function(state) {
+      const goal = state.lead.goal || '';
+      const level = state.lead.level || '';
+      const freq = state.lead.freq || '';
+      let prog = "Remise en forme — 12 semaines";
+      let plan = "Coaching à 99 €/mois";
+      let why = "C'est le programme qui te correspond le mieux.";
+      if (goal === 'Prise de muscle' && level !== 'Débutant') {
+        prog = "Prise de masse — 8 semaines";
+        why = "Ton objectif et ton niveau collent parfaitement à ce programme.";
+      } else if (goal === 'Performance' && level === 'Avancé') {
+        prog = "Performance athlétique — 6 semaines";
+        plan = "Premium à 169 €/mois";
+        why = "Pour un sportif confirmé qui veut progresser sur l'explosivité et la force max — le plan Premium te garantit le suivi qu'il faut à ce niveau.";
+      } else if (level === 'Débutant') {
+        prog = "Remise en forme — 12 semaines";
+        why = "Tu démarres sereinement, on construit les fondations correctement.";
+      }
+      return [
+        `Avec **${goal}** comme objectif, niveau **${level.toLowerCase()}** et **${freq}/semaine**, je te recommande :\n\n📋 **${prog}**\n💰 **${plan}**\n\n${why}\n\nJohan adaptera le programme à ton matériel et tes contraintes après le bilan initial.`,
+        "Tu veux qu'on prépare le démarrage ?"
+      ];
+    },
+    quick: [
+      { label: "Oui, je démarre", next: 'capture' },
+      { label: "J'ai des questions", next: 'free_text' },
+      { label: "Parler à Johan", next: 'handoff_qualified' },
+    ]
+  },
+  app: {
+    bot: ["L'app est gratuite à tester pendant 7 jours. Tu accèdes à un programme complet, le timer de repos, le suivi de progression, le plan nutrition + 15 recettes, et le chat avec Johan.\n\nElle s'installe sur iPhone et Android en 2 secondes (pas besoin d'aller sur l'App Store)."],
+    quick: [
+      { label: "Tester maintenant", next: 'app_link' },
+      { label: "Comment ça s'installe ?", next: 'app_install' },
+      { label: "Voir les tarifs", next: 'tarifs' },
+    ]
+  },
+  app_install: {
+    bot: ["📱 **Sur iPhone** : ouvre app.jscoachsportif.com dans Safari → bouton partage (en bas) → 'Sur l'écran d'accueil'.\n\n📱 **Sur Android** : ouvre dans Chrome → tu verras 'Installer l'application' apparaître automatiquement → clique.\n\nL'icône JS_CoachSportif s'ajoute à ton home screen comme une vraie app."],
+    quick: [
+      { label: "Tester maintenant", next: 'app_link' },
+      { label: "Voir les tarifs", next: 'tarifs' },
+    ]
+  },
+  app_link: {
+    bot: ["L'app sera dispo à **app.jscoachsportif.com** une fois Johan en ligne.\n\nEn attendant, je peux te mettre en relation avec lui par WhatsApp pour qu'il t'ajoute au démarrage."],
+    quick: [
+      { label: "WhatsApp Johan", next: 'handoff_simple' },
+      { label: "Laisser mes coordonnées", next: 'capture' },
+    ]
+  },
+  free_text: {
+    bot: ["Pose-moi ta question 👇 — je réponds directement, et si je n'ai pas la réponse, je te bascule sur Johan."],
+    quick: []
+  },
+  capture: {
+    bot: ["Parfait. Pour que Johan puisse te recontacter avec un plan personnalisé, donne-moi ton prénom et ton email.\n\n*Ex : Marc, marc@email.com*"],
+    capture: true
+  },
+  capture_done: {
+    bot: function(state) {
+      return [
+        `Merci ${state.lead.name} 🙏\n\nJohan te recontacte sous 24 h max sur ${state.lead.email}.\n\nSi tu veux gagner du temps, tu peux **lui écrire directement sur WhatsApp** maintenant — j'ai pré-rempli ton message avec le contexte.`
+      ];
+    },
+    quick: [
+      { label: "Ouvrir WhatsApp", next: 'handoff_qualified' },
+      { label: "Plus tard", next: 'end' },
+    ]
+  },
+  handoff_simple: {
+    bot: ["Je t'ouvre WhatsApp avec un message pré-rempli. Tu n'as plus qu'à envoyer."],
+    action: 'handoff_simple',
+  },
+  handoff_qualified: {
+    bot: ["Je t'ouvre WhatsApp avec ton contexte (objectif, niveau, fréquence) déjà inclus dans le message. Johan saura tout de suite quoi te proposer."],
+    action: 'handoff_qualified',
+  },
+  end: {
+    bot: ["Parfait, à très vite ! 💪\n\nTu peux fermer cette fenêtre, je reste dispo si tu reviens."],
+    quick: [
+      { label: "Recommencer", next: 'start' },
+    ]
+  },
+  unknown: {
+    bot: ["Je n'ai pas trouvé de réponse claire pour ça. Je te bascule sur Johan, c'est plus sûr — il te répondra directement avec le contexte."],
+    quick: [
+      { label: "Parler à Johan", next: 'handoff_simple' },
+      { label: "Reformuler", next: 'free_text' },
+    ]
+  },
+};
+
+/* ============== CHAT STATE ============== */
+const chatState = {
+  isOpen: false,
+  current: null,
+  lead: { name: '', email: '', goal: '', level: '', freq: '', plan: '' },
+  awaitingCapture: false,
+  awaitingFreeText: false,
+};
+
+/* ============== UI HELPERS ============== */
+const $win = () => document.getElementById('chat-window');
+const $msgs = () => document.getElementById('chat-msgs');
+const $input = () => document.getElementById('chat-input');
+const $badge = () => document.getElementById('chat-badge');
+
+function toggleChat() {
+  chatState.isOpen = !chatState.isOpen;
+  $win().classList.toggle('open', chatState.isOpen);
+  $badge().classList.add('hidden');
+  if (chatState.isOpen && !chatState.current) goToNode('start');
+  if (chatState.isOpen) setTimeout(() => $input().focus(), 200);
+}
+
+function setPlanIntent(plan) {
+  chatState.lead.plan = plan;
+  if (!chatState.isOpen) toggleChat();
+}
+
+function addBotMsg(text) {
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+  div.innerHTML = formatText(text);
+  $msgs().appendChild(div);
+  scrollChat();
+}
+
+function addUserMsg(text) {
+  const div = document.createElement('div');
+  div.className = 'msg user';
+  div.textContent = text;
+  $msgs().appendChild(div);
+  scrollChat();
+}
+
+function addQuickButtons(quick) {
+  if (!quick || !quick.length) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'msg-quick';
+  for (const q of quick) {
+    const b = document.createElement('button');
+    b.textContent = q.label;
+    b.onclick = () => {
+      addUserMsg(q.label);
+      if (q.save) Object.assign(chatState.lead, q.save);
+      goToNode(q.next);
+    };
+    wrap.appendChild(b);
+  }
+  $msgs().appendChild(wrap);
+  scrollChat();
+}
+
+function formatText(t) {
+  return t
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/\n/g, '<br>');
+}
+
+function scrollChat() {
+  const el = $msgs();
+  setTimeout(() => { el.scrollTop = el.scrollHeight; }, 50);
+}
+
+function goToNode(name) {
+  const node = FLOW[name];
+  if (!node) { goToNode('unknown'); return; }
+  chatState.current = name;
+  chatState.awaitingCapture = false;
+  chatState.awaitingFreeText = false;
+
+  let messages = [];
+  if (typeof node.bot === 'function') messages = node.bot(chatState);
+  else if (Array.isArray(node.bot)) messages = node.bot;
+
+  let i = 0;
+  function step() {
+    if (i < messages.length) {
+      addBotMsg(messages[i]);
+      i++;
+      setTimeout(step, 350);
+    } else {
+      if (node.action === 'handoff_simple') return setTimeout(() => doHandoff(false), 600);
+      if (node.action === 'handoff_qualified') return setTimeout(() => doHandoff(true), 600);
+      if (node.capture) chatState.awaitingCapture = true;
+      else if (name === 'free_text') chatState.awaitingFreeText = true;
+      addQuickButtons(node.quick);
+    }
+  }
+  step();
+}
+
+function onChatSubmit(ev) {
+  ev.preventDefault();
+  const v = $input().value.trim();
+  if (!v) return;
+  $input().value = '';
+  addUserMsg(v);
+
+  if (chatState.awaitingCapture) {
+    const emailMatch = v.match(/[\w.+-]+@[\w-]+\.[\w.-]+/);
+    const email = emailMatch ? emailMatch[0] : '';
+    let name = v.replace(email, '').replace(/[,;:]/g, '').trim();
+    if (!name) name = 'là';
+    chatState.lead.name = name;
+    chatState.lead.email = email;
+    if (!email) {
+      addBotMsg("Hmm, je n'ai pas vu d'email valide. Réessaie avec ton prénom et ton email — ex: *Marc, marc@email.com*");
+      return;
+    }
+    setTimeout(() => goToNode('capture_done'), 400);
+    return;
+  }
+
+  if (chatState.awaitingFreeText) {
+    const lower = v.toLowerCase();
+    for (const item of FAQ_PATTERNS) {
+      if (item.keys.some(k => lower.includes(k))) {
+        addBotMsg(item.a);
+        setTimeout(() => addQuickButtons([
+          { label: "Tarifs", next: 'tarifs' },
+          { label: "Démarrer", next: 'capture' },
+          { label: "Parler à Johan", next: 'handoff_simple' },
+          { label: "Autre question", next: 'free_text' },
+        ]), 400);
+        chatState.awaitingFreeText = false;
+        return;
+      }
+    }
+    setTimeout(() => goToNode('unknown'), 400);
+    return;
+  }
+
+  // Default: try FAQ matching even without explicit free_text mode
+  const lower = v.toLowerCase();
+  for (const item of FAQ_PATTERNS) {
+    if (item.keys.some(k => lower.includes(k))) {
+      addBotMsg(item.a);
+      return;
+    }
+  }
+  goToNode('unknown');
+}
+
+function doHandoff(qualified) {
+  const lines = [`Salut ${COACH_NAME}, je viens du site jscoachsportif.com.`];
+  if (chatState.lead.name) lines.push(`- Prénom : ${chatState.lead.name}`);
+  if (chatState.lead.email) lines.push(`- Email : ${chatState.lead.email}`);
+  if (qualified) {
+    if (chatState.lead.plan) lines.push(`- Plan envisagé : ${chatState.lead.plan}`);
+    if (chatState.lead.goal) lines.push(`- Objectif : ${chatState.lead.goal}`);
+    if (chatState.lead.level) lines.push(`- Niveau : ${chatState.lead.level}`);
+    if (chatState.lead.freq) lines.push(`- Fréquence : ${chatState.lead.freq}`);
+  }
+  lines.push(qualified ? "Je veux démarrer le coaching." : "Je voudrais en savoir plus.");
+  const msg = lines.join('\n');
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
+
+function submitContactForm(ev) {
+  ev.preventDefault();
+  const f = ev.target;
+  const lines = [
+    `Salut ${COACH_NAME}, je viens du site jscoachsportif.com.`,
+    `- Prénom : ${f.name.value}`,
+    `- Email : ${f.email.value}`,
+    `- Objectif : ${f.goal.value}`,
+  ];
+  if (f.message.value.trim()) lines.push(`- Message : ${f.message.value.trim()}`);
+  lines.push("Recontacte-moi quand tu peux.");
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
+  window.open(url, '_blank');
+}
+
+/* ============== AUTO-OPEN BADGE ============== */
+let inactivityTimer;
+function resetInactivity() {
+  clearTimeout(inactivityTimer);
+  inactivityTimer = setTimeout(() => {
+    if (!chatState.isOpen) {
+      $badge().classList.remove('hidden');
+      try {
+        document.getElementById('chat-fab').animate(
+          [{ transform: 'scale(1)' }, { transform: 'scale(1.15)' }, { transform: 'scale(1)' }],
+          { duration: 600, iterations: 2 }
+        );
+      } catch (e) {}
+    }
+  }, 18000);
+}
+['mousemove', 'click', 'keydown', 'scroll', 'touchstart'].forEach(ev => {
+  document.addEventListener(ev, resetInactivity, { passive: true });
+});
+resetInactivity();
+</script>
+
+</body>
+</html>
