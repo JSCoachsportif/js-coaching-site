@@ -8,6 +8,13 @@
 <meta property="og:title" content="JS_CoachSportif — Coaching personnel" />
 <meta property="og:description" content="Programme sur mesure, nutrition, suivi dans l'app, résultats mesurables." />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://jscoachsportif.com/" />
+<meta property="og:locale" content="fr_BE" />
+<link rel="canonical" href="https://jscoachsportif.com/" />
+<meta name="robots" content="index, follow" />
+<meta name="author" content="Johan Sampaoli" />
+<meta name="geo.region" content="BE-WHT" />
+<meta name="geo.placename" content="La Louvière" />
 <link rel="icon" type="image/png" href="favicon.png" />
 <style>
 :root {
@@ -594,6 +601,77 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   </div>
 </section>
 
+<!-- ============================== TARIFS PRÉSENTIEL ============================== -->
+<section class="pricing section" id="tarifs-presentiel" style="background: linear-gradient(180deg, #FFFFFF 0%, #F0F9FF 100%);">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">🏋️ Présentiel · La Louvière</span>
+      <h2>Préfères-tu t'entraîner en présentiel avec moi ?</h2>
+      <p>En salle équipée à La&nbsp;Louvière (Hainaut, zone Mons/Charleroi). Choisis le format qui te correspond. <strong>Première séance découverte 100&nbsp;% gratuite.</strong></p>
+    </div>
+    <div class="pricing-grid">
+      <!-- Individuel -->
+      <div class="plan">
+        <div class="plan-name">Individuel</div>
+        <div class="plan-price">40<span class="per">€/séance</span></div>
+        <div class="plan-tag-line">Séance 100&nbsp;% adaptée à toi, encadrement intégral.</div>
+        <ul>
+          <li><strong>Séance unique :</strong> 40 €</li>
+          <li><strong>Pack 5 séances :</strong> 180 € <em>(36 €/séance)</em></li>
+          <li><strong>Pack 10 séances :</strong> 340 € <em>(34 €/séance)</em></li>
+          <li><strong>Forfait 4 séances / mois :</strong> 140 €</li>
+          <li><strong>Forfait 8 séances / mois :</strong> 256 €</li>
+          <li>Bilan corporel inclus</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost plan-cta" onclick="setPlanIntent('presentiel-individuel')">Choisir Individuel</a>
+      </div>
+
+      <!-- Duo / Couple (popular) -->
+      <div class="plan plan-popular">
+        <div class="plan-tag">Le plus avantageux</div>
+        <div class="plan-name">Duo / Couple</div>
+        <div class="plan-price">28<span class="per">€/pers/séance</span></div>
+        <div class="plan-tag-line">À&nbsp;2, motivation décuplée, tarif réduit par personne.</div>
+        <ul>
+          <li><strong>Par personne / séance :</strong> 28 €</li>
+          <li><strong>Pack 5 séances :</strong> 130 €/pers</li>
+          <li><strong>Forfait 4 séances / mois :</strong> 100 €/pers</li>
+          <li>Idéal couple, amis ou collègues</li>
+          <li>Encadrement adapté aux 2 profils</li>
+          <li>Bilan corporel inclus</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary plan-cta" onclick="setPlanIntent('presentiel-duo')">Choisir Duo / Couple</a>
+      </div>
+
+      <!-- Collectif -->
+      <div class="plan">
+        <div class="plan-name">Cours collectif</div>
+        <div class="plan-price">12<span class="per">€/pers/séance</span></div>
+        <div class="plan-tag-line">Petit groupe (6 à 10&nbsp;pers), énergie partagée.</div>
+        <ul>
+          <li><strong>Cours à la séance :</strong> 12 €</li>
+          <li><strong>Carte 10 séances :</strong> 100 € <em>(10 €/séance)</em></li>
+          <li><strong>Mensuel illimité collectif :</strong> 59 €/mois</li>
+          <li>Format bootcamp, circuit ou prépa physique</li>
+          <li>Tous niveaux acceptés</li>
+          <li>Esprit team, motivation collective</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost plan-cta" onclick="setPlanIntent('presentiel-collectif')">Choisir Cours collectif</a>
+      </div>
+    </div>
+
+    <!-- Bandeau séance découverte gratuite -->
+    <div style="margin-top: 48px; padding: 32px 24px; background: #FFFFFF; border: 2px dashed #38BDF8; border-radius: 16px; text-align: center; max-width: 760px; margin-left: auto; margin-right: auto; box-shadow: 0 8px 24px rgba(56, 189, 248, 0.15);">
+      <div style="font-size: 40px; margin-bottom: 8px;">🎁</div>
+      <h3 style="margin: 0 0 8px 0; font-size: 24px;">Première séance découverte 100&nbsp;% offerte</h3>
+      <p style="margin: 0 0 20px 0; color: #475569; max-width: 540px; margin-left: auto; margin-right: auto;">Bilan corporel + mini séance test + présentation de la méthode (60&nbsp;min). <strong>Aucun engagement.</strong> Le format idéal pour voir si le courant passe avant de te lancer.</p>
+      <a href="#contact" class="btn btn-primary" onclick="setPlanIntent('decouverte-gratuite')">Réserver ma séance gratuite</a>
+    </div>
+
+    <p class="form-note text-center mt-md" style="margin-top: 24px;">Paiement sur place ou par virement · TVA incluse · Salle équipée à La&nbsp;Louvière</p>
+  </div>
+</section>
+
 <!-- ============================== PROGRAMMES ============================== -->
 <section class="programs section" id="programmes">
   <div class="container">
@@ -748,7 +826,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Tu coaches en présentiel ou seulement en ligne ? <span class="ic">+</span></div>
-        <div class="faq-a">Les deux, bien distincts.<br><br><strong>🏋️ Présentiel à La Louvière</strong> (en salle équipée, zone Hainaut/Mons/Charleroi) — 3 formats au choix : <strong>individuel</strong> (séance 100 % adaptée à toi, encadrement intégral), <strong>duo ou couple</strong> (à 2, motivation décuplée, tarif réduit par personne) ou <strong>cours collectif</strong> (petit groupe max 6, énergie de groupe, idéal pour rester régulier).<br><br><strong>💻 En ligne partout en BE/FR</strong> — programme sur-mesure dans l'app dédiée, plan nutrition, suivi vidéo hebdo et chat WhatsApp.<br><br>Format <strong>hybride</strong> aussi possible : démarrage en présentiel à La Louvière, suivi à distance ensuite.</div>
+        <div class="faq-a">Les deux, bien distincts.<br><br><strong>🏋️ Présentiel à La Louvière</strong> (en salle équipée, zone Hainaut/Mons/Charleroi) — 3 formats au choix : <strong>individuel</strong> à 40 €/séance, <strong>duo ou couple</strong> à 28 €/pers ou <strong>cours collectif</strong> à 12 €/pers (groupe de 6 à 10 personnes). <strong>🎁 Première séance découverte 100 % gratuite.</strong> Tous les détails dans la <a href="#tarifs-presentiel">section Tarifs présentiel</a>.<br><br><strong>💻 En ligne partout en BE/FR</strong> — programmes à partir de 49 €/mois avec app dédiée, plan nutrition, suivi vidéo hebdo et chat WhatsApp.<br><br>Format <strong>hybride</strong> aussi possible : démarrage en présentiel à La Louvière, suivi à distance ensuite.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Et si je suis vraiment débutant ? <span class="ic">+</span></div>
@@ -908,7 +986,7 @@ const FAQ_PATTERNS = [
   },
   {
     keys: ['où', 'lieu', 'distance', 'ligne', 'online', 'à distance', 'présentiel', 'la louvière', 'louviere', 'louvière', 'hainaut', 'mons', 'charleroi', 'bruxelles', 'individuel', 'duo', 'couple', 'collectif', 'collectifs', 'groupe'],
-    a: "Les deux options, bien distinctes.\n\n🏋️ **Présentiel à La Louvière** (en salle, Hainaut/Mons/Charleroi) — 3 formats au choix : **individuel** (séance 100 % adaptée), **duo ou couple** (à 2, tarif réduit par personne) ou **cours collectif** (petit groupe max 6, esprit team).\n\n💻 **En ligne partout en BE/FR** — programme sur-mesure dans l'app + suivi vidéo hebdo + chat WhatsApp.\n\nFormat **hybride** aussi possible : démarrage présentiel, suivi à distance."
+    a: "Les deux options, bien distinctes.\n\n🏋️ **Présentiel à La Louvière** (en salle, Hainaut/Mons/Charleroi) — 3 formats :\n• **Individuel** : 40 €/séance (packs et forfaits dispo)\n• **Duo / couple** : 28 €/pers/séance\n• **Cours collectif** (6-10 pers) : 12 €/pers/séance\n\n🎁 **Première séance découverte 100 % gratuite !**\n\n💻 **En ligne partout en BE/FR** — programmes à partir de 49 €/mois avec app dédiée + suivi vidéo hebdo + chat WhatsApp.\n\nFormat **hybride** aussi possible : démarrage présentiel, suivi à distance."
   },
   {
     keys: ['matériel', 'materiel', 'équipement', 'equipement', 'haltère', 'haltere', 'salle', 'maison', 'sans matériel'],
