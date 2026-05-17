@@ -1,0 +1,8 @@
+# Robots.txt — JS_CoachSportif
+# https://jscoachsportif.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jscoachsportif.com/sitemap.xml
